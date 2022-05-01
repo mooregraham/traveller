@@ -5,22 +5,23 @@ import { Container, Heading, ListItem, UnorderedList } from '@chakra-ui/react'
 import { cityUrl } from './Home'
 
 export const Visited: FC = () => {
-  const [visited, setVisited] = useState()
+  const [cities, setCities] = useState()
 
   useEffect(() => {
     fetch(cityUrl, { method: 'GET' })
       .then(response => response.json())
-      .then(data => setVisited(data))
+      .then(data => setCities(data))
       .catch(error => console.log('Error getting data from API', error))
   }, [])
 
   const addListItems = () => {
     const displayVisited = []
 
-    if (visited !== undefined) {
-      for (let i in visited.cities) {
-        if (visited.cities[i].visited === true) {
-          displayVisited.push(<ListItem>{visited.cities[i].name}</ListItem>)
+    // Check that the promise has resolved first
+    if (cities !== undefined) {
+      for (let i in cities.cities) {
+        if (cities.cities[i].visited === true) {
+          displayVisited.push(<ListItem>{cities.cities[i].name}</ListItem>)
         }
       }
     }
