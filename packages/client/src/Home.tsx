@@ -29,8 +29,15 @@ export const Home: FC = () => {
   const formatSearchInput = input => {
     // API format is first letter of each word capiatlised, remainder lower case
     // Massage the user input so that it matches
-    const trimmed = input.trim()
-    return trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase()
+    const cityName = input
+      .trim()
+      .split(' ')
+      .map(city => {
+        return city[0].toUpperCase() + city.substring(1).toLowerCase()
+      })
+      .join(' ')
+
+    return cityName
   }
 
   const updateSearch = searchInput => {
