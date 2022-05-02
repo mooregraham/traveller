@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import type { FC } from 'react'
-import { Container, Heading, ListItem, UnorderedList } from '@chakra-ui/react'
+import { Container, Heading, Table, Tr, Td, Tbody } from '@chakra-ui/react'
 
 import { cityUrl } from './Home'
 
@@ -21,7 +21,13 @@ export const Visited: FC = () => {
     if (cities !== undefined) {
       for (let i in cities.cities) {
         if (cities.cities[i].visited === true) {
-          displayVisited.push(<ListItem>{cities.cities[i].name}</ListItem>)
+          displayVisited.push(
+            <Tr>
+              <Td>
+                {cities.cities[i].name}, {cities.cities[i].country}
+              </Td>
+            </Tr>
+          )
         }
       }
     }
@@ -33,7 +39,9 @@ export const Visited: FC = () => {
     <>
       <Heading as="h1">Visited</Heading>
       <Container centerContent maxW="container.md" flexDir="row"></Container>
-      <UnorderedList>{addListItems()}</UnorderedList>
+      <Table variant="striped" colorScheme="teal">
+        <Tbody>{addListItems()}</Tbody>
+      </Table>
     </>
   )
 }

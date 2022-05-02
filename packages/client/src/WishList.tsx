@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import type { FC } from 'react'
-import { Container, Heading, ListItem, UnorderedList } from '@chakra-ui/react'
+import { Container, Heading, Table, Td, Tr, Tbody } from '@chakra-ui/react'
 
 import { cityUrl } from './Home'
 
@@ -21,7 +21,13 @@ export const WishList: FC = () => {
     if (cities !== undefined) {
       for (let i in cities.cities) {
         if (cities.cities[i].wishlist === true) {
-          displayWishlist.push(<ListItem>{cities.cities[i].name}</ListItem>)
+          displayWishlist.push(
+            <Tr>
+              <Td>
+                {cities.cities[i].name}, {cities.cities[i].country}
+              </Td>
+            </Tr>
+          )
         }
       }
     }
@@ -33,7 +39,9 @@ export const WishList: FC = () => {
     <>
       <Heading as="h1">Wish list</Heading>
       <Container centerContent maxW="container.md" flexDir="row"></Container>
-      <UnorderedList>{addListItems()}</UnorderedList>
+      <Table variant="striped" colorScheme="teal">
+        <Tbody>{addListItems()}</Tbody>
+      </Table>
     </>
   )
 }
