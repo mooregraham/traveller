@@ -69,7 +69,7 @@ export const Home: FC = () => {
       <Heading as="h1">Smart traveller</Heading>
       <Container maxW="container.md">
         <InputGroup>
-          <Input placeholder="City" onChange={e => updateSearch(e.target.value)} />
+          <Input placeholder="City" focusBorderColor="cyan.400" onChange={e => updateSearch(e.target.value)} />
           <InputRightElement children={<IconButton aria-label="" icon={<Search2Icon />} onClick={conductSearch} />} />
         </InputGroup>
         <CityTable city={city} />
